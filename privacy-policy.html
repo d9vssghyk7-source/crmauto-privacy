@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade — CRM Auto</title>
+    <title>Privacy Policy / Política de Privacidade — CRM Auto</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -19,10 +19,102 @@
         .updated { color: #888; font-size: 14px; margin-bottom: 32px; }
         ul { padding-left: 20px; }
         a { color: #007AFF; }
+        .lang-toggle {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        .lang-toggle button {
+            background: none;
+            border: 1px solid #007AFF;
+            color: #007AFF;
+            padding: 4px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lang-toggle button:hover { background: #007AFF; color: #fff; }
+        [lang-section] { display: none; }
     </style>
 </head>
 <body>
 
+<div class="lang-toggle">
+    <button onclick="setLang('en')" id="btn-en">English</button>
+    <button onclick="setLang('pt')" id="btn-pt">Português</button>
+</div>
+
+<!-- ENGLISH -->
+<div lang-section="en">
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: 24 June 2026</p>
+
+<p>This Privacy Policy describes how the <strong>CRM Auto</strong> app ("the App"), developed by Rui Moutinho, collects, uses and protects your data.</p>
+
+<h2>1. Data Collected</h2>
+<p>The App collects and stores the following data, entered directly by the user:</p>
+<ul>
+    <li>Customer information (name, company, contact details, address)</li>
+    <li>Deal records, proposals and sales pipeline</li>
+    <li>Text notes and transcribed voice notes</li>
+    <li>PDF documents generated or imported</li>
+    <li>Contact dates and follow-ups</li>
+</ul>
+
+<h2>2. Data Storage</h2>
+<p>All data is stored locally on the user's device using Apple's SwiftData framework. Data is not transmitted to the developer's external servers, except in the following cases:</p>
+<ul>
+    <li><strong>Voice notes:</strong> audio is processed by Apple's speech recognition service (SFSpeechRecognizer) for transcription. Apple may process this audio on its own servers in accordance with its own privacy policy.</li>
+    <li><strong>Device synchronisation:</strong> if enabled, data may be synchronised between the user's own devices via Apple's iCloud, in accordance with the device's iCloud settings. This synchronisation is provided by Apple's infrastructure; the developer does not have access to synchronised data.</li>
+    <li><strong>Configuration file:</strong> the App may consult a public configuration file hosted by the developer to enable or disable features. This request does not send any personal user data.</li>
+</ul>
+
+<h2>3. Data Not Collected</h2>
+<p>The App does <strong>not</strong> collect:</p>
+<ul>
+    <li>Location data</li>
+    <li>Usage data or telemetry</li>
+    <li>Personal information of the App user (such as name or email)</li>
+    <li>Advertising data or tracking identifiers</li>
+</ul>
+
+<h2>4. Subscriptions</h2>
+<p>The App offers a free plan and a paid plan:</p>
+<ul>
+    <li><strong>Free plan:</strong> unlimited time, with basic features and a client limit.</li>
+    <li><strong>Pro plan:</strong> monthly subscription that unlocks unlimited clients and all features, processed exclusively through Apple's App Store.</li>
+</ul>
+<p>Payment and subscription management are handled by Apple. The App does not have access to payment or credit card information.</p>
+
+<h2>5. Device Permissions</h2>
+<p>The App may request the following permissions:</p>
+<ul>
+    <li><strong>Microphone:</strong> to record voice notes</li>
+    <li><strong>Speech recognition:</strong> to transcribe voice notes to text</li>
+    <li><strong>Camera and Photo Library:</strong> to attach documents and photos to clients</li>
+    <li><strong>Contacts:</strong> to facilitate sending messages to clients</li>
+</ul>
+<p>All permissions are optional and can be managed in iPhone Settings.</p>
+
+<h2>6. Security</h2>
+<p>Data is stored locally on the device and protected by iOS/macOS operating system security measures. We recommend using a passcode or Face ID on the device to protect access to the App.</p>
+
+<h2>7. Minors</h2>
+<p>The App is not intended for users under the age of 17 and does not intentionally collect data from minors.</p>
+
+<h2>8. Changes to This Policy</h2>
+<p>We may update this Privacy Policy occasionally. Any changes will be posted on this page with the update date.</p>
+
+<h2>9. Contact</h2>
+<p>For privacy-related questions, please contact:</p>
+<p>
+    <strong>Rui Moutinho</strong><br>
+    Portugal<br>
+    Email: <a href="mailto:suporte.crmauto@icloud.com">suporte.crmauto@icloud.com</a>
+</p>
+</div>
+
+<!-- PORTUGUÊS -->
+<div lang-section="pt">
 <h1>Política de Privacidade</h1>
 <p class="updated">Última atualização: 24 de junho de 2026</p>
 
@@ -89,6 +181,22 @@
     Portugal<br>
     Email: <a href="mailto:suporte.crmauto@icloud.com">suporte.crmauto@icloud.com</a>
 </p>
+</div>
 
+<script>
+function setLang(l) {
+    document.querySelectorAll('[lang-section]').forEach(el => {
+        el.style.display = el.getAttribute('lang-section') === l ? 'block' : 'none';
+    });
+    document.documentElement.lang = l;
+    localStorage.setItem('crmauto-lang', l);
+}
+(function() {
+    var saved = localStorage.getItem('crmauto-lang');
+    var browser = (navigator.language || navigator.userLanguage || 'pt').toLowerCase();
+    var lang = saved || (browser.startsWith('pt') ? 'pt' : 'en');
+    setLang(lang);
+})();
+</script>
 </body>
 </html>

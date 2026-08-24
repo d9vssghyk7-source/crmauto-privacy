@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suporte — CRM Auto</title>
+    <title>Support / Suporte — CRM Auto</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -15,6 +15,7 @@
         }
         h1 { color: #1a1a1a; font-size: 28px; margin-bottom: 8px; }
         h2 { color: #1a1a1a; font-size: 20px; margin-top: 36px; }
+        h3 { color: #1a1a1a; font-size: 17px; margin-top: 24px; margin-bottom: 4px; }
         p, li { font-size: 16px; }
         .updated { color: #888; font-size: 14px; margin-bottom: 32px; }
         ul { padding-left: 20px; }
@@ -25,10 +26,65 @@
             padding: 20px 24px;
             margin-top: 16px;
         }
+        .lang-toggle {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        .lang-toggle button {
+            background: none;
+            border: 1px solid #007AFF;
+            color: #007AFF;
+            padding: 4px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lang-toggle button:hover { background: #007AFF; color: #fff; }
+        [lang-section] { display: none; }
     </style>
 </head>
 <body>
 
+<div class="lang-toggle">
+    <button onclick="setLang('en')">English</button>
+    <button onclick="setLang('pt')">Português</button>
+</div>
+
+<!-- ENGLISH -->
+<div lang-section="en">
+<h1>Support — CRM Auto</h1>
+<p class="updated">CRM Auto — Customer and sales management</p>
+
+<p>Need help with <strong>CRM Auto</strong>? We're here to help. Contact us by email and we'll respond as quickly as possible, usually within 1–2 business days.</p>
+
+<div class="contact">
+    <p style="margin:0;"><strong>Support email</strong><br>
+    <a href="mailto:suporte.crmauto@icloud.com">suporte.crmauto@icloud.com</a></p>
+</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How do I manage or cancel my subscription?</h3>
+<p>Subscriptions are managed through the App Store. On your iPhone or iPad, open <strong>Settings → [your name] → Subscriptions</strong>, choose CRM Auto and make changes or cancel. Cancellation must be done at least 24 hours before the end of the current period.</p>
+
+<h3>Where is my data stored?</h3>
+<p>Your data is stored locally on your device. If you enable synchronisation, your data follows you across your own devices via iCloud. The developer does not have access to your data.</p>
+
+<h3>How do I back up or export my data?</h3>
+<p>In the app, go to <strong>More → Backup & Data</strong> to export and back up your data. CSV export and backup features are part of the Pro plan.</p>
+
+<h3>Does the app work on iPhone, iPad and Mac?</h3>
+<p>Yes. CRM Auto works on iPhone, iPad and Mac, and your data follows you across your devices.</p>
+
+<h2>Documents</h2>
+<p>
+    <a href="privacy-policy.html">Privacy Policy</a><br>
+    <a href="terms/">Terms of Use</a>
+</p>
+</div>
+
+<!-- PORTUGUÊS -->
+<div lang-section="pt">
 <h1>Suporte — CRM Auto</h1>
 <p class="updated">CRM Auto — Gestão de clientes e vendas</p>
 
@@ -41,16 +97,16 @@
 
 <h2>Perguntas frequentes</h2>
 
-<h2 style="font-size:17px;">Como giro ou cancelo a minha subscrição?</h2>
+<h3>Como giro ou cancelo a minha subscrição?</h3>
 <p>As subscrições são geridas pela App Store. No iPhone ou iPad, abra <strong>Definições → [o seu nome] → Subscrições</strong>, escolha o CRM Auto e faça as alterações ou o cancelamento. O cancelamento deve ser feito até 24 horas antes do fim do período em curso.</p>
 
-<h2 style="font-size:17px;">Onde ficam guardados os meus dados?</h2>
+<h3>Onde ficam guardados os meus dados?</h3>
 <p>Os seus dados são guardados localmente no seu dispositivo. Se ativar a sincronização, os dados acompanham-no entre os seus próprios dispositivos através do iCloud. O desenvolvedor não tem acesso aos seus dados.</p>
 
-<h2 style="font-size:17px;">Como faço cópia de segurança ou exporto os meus dados?</h2>
+<h3>Como faço cópia de segurança ou exporto os meus dados?</h3>
 <p>Na app, em <strong>More → Backup e Dados</strong>, pode exportar e fazer cópias de segurança dos seus dados. As funções de exportação CSV e backup fazem parte do plano Pro.</p>
 
-<h2 style="font-size:17px;">A app funciona em iPhone, iPad e Mac?</h2>
+<h3>A app funciona em iPhone, iPad e Mac?</h3>
 <p>Sim. O CRM Auto funciona em iPhone, iPad e Mac, e os seus dados acompanham-no entre os seus dispositivos.</p>
 
 <h2>Documentos</h2>
@@ -58,6 +114,22 @@
     <a href="privacy-policy.html">Política de Privacidade</a><br>
     <a href="terms/">Termos de Utilização</a>
 </p>
+</div>
 
+<script>
+function setLang(l) {
+    document.querySelectorAll('[lang-section]').forEach(el => {
+        el.style.display = el.getAttribute('lang-section') === l ? 'block' : 'none';
+    });
+    document.documentElement.lang = l;
+    localStorage.setItem('crmauto-lang', l);
+}
+(function() {
+    var saved = localStorage.getItem('crmauto-lang');
+    var browser = (navigator.language || navigator.userLanguage || 'pt').toLowerCase();
+    var lang = saved || (browser.startsWith('pt') ? 'pt' : 'en');
+    setLang(lang);
+})();
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termos de Uso — CRM Auto</title>
+    <title>Terms of Use / Termos de Uso — CRM Auto</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -19,10 +19,74 @@
         .updated { color: #888; font-size: 14px; margin-bottom: 32px; }
         ul { padding-left: 20px; }
         a { color: #007AFF; }
+        .lang-toggle {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        .lang-toggle button {
+            background: none;
+            border: 1px solid #007AFF;
+            color: #007AFF;
+            padding: 4px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lang-toggle button:hover { background: #007AFF; color: #fff; }
+        [lang-section] { display: none; }
     </style>
 </head>
 <body>
 
+<div class="lang-toggle">
+    <button onclick="setLang('en')">English</button>
+    <button onclick="setLang('pt')">Português</button>
+</div>
+
+<!-- ENGLISH -->
+<div lang-section="en">
+<h1>Terms of Use</h1>
+<p class="updated">Last updated: 24 June 2026</p>
+
+<p>By downloading or using the <strong>CRM Auto</strong> app ("the App"), developed by Rui Moutinho, you agree to these Terms of Use. Please read them carefully before using the App.</p>
+
+<h2>1. Acceptance of Terms</h2>
+<p>Use of the App implies full acceptance of these Terms. If you do not agree with any condition, you should not use the App.</p>
+
+<h2>2. Licence to Use</h2>
+<p>A personal, non-exclusive, non-transferable and revocable licence is granted to use the App solely for professional purposes of customer and business management in the automotive sector.</p>
+
+<h2>3. Subscriptions and Payments</h2>
+<p>The App offers a free plan and a paid subscription plan (Pro), with the following conditions:</p>
+<ul>
+    <li>The free plan is available indefinitely, with basic features and a client limit.</li>
+    <li>The Pro plan is a monthly subscription that unlocks unlimited clients and all features.</li>
+    <li>Payment is charged to the Apple ID account at the time of purchase confirmation.</li>
+    <li>The subscription renews automatically for the same period and price, unless cancelled.</li>
+    <li>You can cancel automatic renewal in App Store Settings at least 24 hours before the end of the current period.</li>
+    <li>No refunds are issued for subscription periods already started.</li>
+</ul>
+
+<h2>4. Data and Privacy</h2>
+<p>Your data is stored locally on the device and, if synchronisation is enabled, may be synchronised between your devices via Apple's iCloud. Please refer to our <a href="https://d9vssghyk7-source.github.io/crmauto-privacy/privacy-policy.html">Privacy Policy</a> for more information.</p>
+
+<h2>5. Intellectual Property</h2>
+<p>All content in the App, including design, code and text, is the property of Rui Moutinho and is protected by copyright. Reproduction or distribution without prior authorisation is prohibited.</p>
+
+<h2>6. Limitation of Liability</h2>
+<p>The App is provided "as is". The developer does not guarantee that the App will be uninterrupted or error-free, nor is the developer responsible for data loss or indirect damages resulting from its use.</p>
+
+<h2>7. Changes to Terms</h2>
+<p>We reserve the right to update these Terms at any time. Material changes will be communicated through the App. Continued use after changes are published implies acceptance of the new Terms.</p>
+
+<h2>8. Contact</h2>
+<p>For questions related to these Terms, contact: <a href="mailto:suporte.crmauto@icloud.com">suporte.crmauto@icloud.com</a></p>
+
+<p style="margin-top: 48px; color: #888; font-size: 14px;">© 2026 Rui Moutinho. All rights reserved.</p>
+</div>
+
+<!-- PORTUGUÊS -->
+<div lang-section="pt">
 <h1>Termos de Uso</h1>
 <p class="updated">Última atualização: 24 de junho de 2026</p>
 
@@ -61,6 +125,22 @@
 <p>Para questões relacionadas com estes Termos, contacte: <a href="mailto:suporte.crmauto@icloud.com">suporte.crmauto@icloud.com</a></p>
 
 <p style="margin-top: 48px; color: #888; font-size: 14px;">© 2026 Rui Moutinho. Todos os direitos reservados.</p>
+</div>
 
+<script>
+function setLang(l) {
+    document.querySelectorAll('[lang-section]').forEach(el => {
+        el.style.display = el.getAttribute('lang-section') === l ? 'block' : 'none';
+    });
+    document.documentElement.lang = l;
+    localStorage.setItem('crmauto-lang', l);
+}
+(function() {
+    var saved = localStorage.getItem('crmauto-lang');
+    var browser = (navigator.language || navigator.userLanguage || 'pt').toLowerCase();
+    var lang = saved || (browser.startsWith('pt') ? 'pt' : 'en');
+    setLang(lang);
+})();
+</script>
 </body>
 </html>
